@@ -1,0 +1,834 @@
+/* ========================================================================
+   GLOBAL / SHARED: APPLIES TO ENTIRE LANDING PAGE
+   ======================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap');
+
+/* ================= COMMON HEADER (Header.js) ================= */
+
+.common-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 29px 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 90px;
+  background: transparent;
+  transition: all 3s ease;
+}
+
+@media (max-width: 900px) {
+  .common-header {
+    padding: 24px 32px;
+    flex-wrap: wrap;
+  }
+
+  .hero-links {
+    order: 3;
+    flex-basis: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .common-header {
+    padding: 20px 24px;
+  }
+}
+
+/* ================= GLOBAL RESETS & BODY ================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+}
+
+body {
+  margin: 0;
+  font-family: "Sora", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  background-color: #f6eee2;
+  color: #1f1307;
+  overflow-x: hidden;
+}
+
+/* ensure all basic elements inherit Sora cleanly */
+a,
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+.app-root {
+  min-height: 100vh;
+}
+
+//* ================= SHARED COMPONENTS (LOGO, NAV, CTA) ================= */
+
+.hero-logo-wrap {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.hero-logo {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.hero-links {
+  display: flex;
+  align-items: center;
+  gap: 190px;
+  margin-left: 590px;
+  margin-right: 0px; /* ✅ Even more space */
+}
+
+.hero-links a {
+  text-decoration: none;
+  color: #8d5d32;
+  font-size: 16px;
+  font-weight: 500;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+}
+
+.hero-links a:hover {
+  color: #6b4524;
+}
+
+.hero-cta {
+  padding: 13px 28px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  background: #c9973d;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+.hero-cta:hover {
+  background: #b8862f;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* ================= DOTS NAV (USED GLOBALLY FOR ALL SECTIONS) ================= */
+
+.hero-dots {
+  position: fixed;
+  top: 50%;
+  right: 48px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* thoda zyada spacing like ref */
+  z-index: 100;
+}
+
+/* Normal dots */
+.hero-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #8a5a2e;
+  opacity: 0.6;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  position: relative;
+}
+
+/* Hover thoda highlight */
+.hero-dot:hover {
+  opacity: 0.9;
+}
+
+/* Active dot: filled + outer ring (exact style) */
+.hero-dot-active {
+  opacity: 1;
+  background: #7b4a23;
+}
+
+.hero-dot-active::before {
+  content: "";
+  position: absolute;
+  inset: -6px;              /* outer ring size */
+  border-radius: 50%;
+  border: 2px solid #7b4a23;
+}
+
+/* ================= SCROLL INDICATOR (USED IN HERO + FEATURES) ================= */
+
+./* Center the scroll chevron perfectly at the bottom */
+.hero-scroll {
+  position: fixed;            /* pin to viewport */
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  z-index: 20;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* remove any inherited spacing quirks */
+  padding: 0;
+  margin: 0;
+  width: auto;
+}
+
+/* Perfectly round, centered circle */
+.hero-scroll-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.06);
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.hero-scroll-circle:hover {
+  transform: translateY(2px);
+  border-color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* Make the chevron sit dead-center */
+.hero-scroll-chevron {
+  display: block;     /* avoid inline baseline offset */
+  font-size: 18px;
+  line-height: 1;     /* exact centering inside circle */
+}
+
+
+/* ================= SHARED PHONE MOCKUP (USED IN HERO, FEATURES, ETC.) ================= */
+
+.phone-mockup {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  aspect-ratio: 9 / 19.5;
+}
+
+.phone-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #000000;
+  border-radius: 52px;
+  padding: 12px;
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.phone-notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 30px;
+  background: #000000;
+  border-radius: 0 0 20px 20px;
+  z-index: 10;
+}
+
+.phone-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #f5f5f7;
+  border-radius: 42px;
+  overflow: hidden;
+}
+
+.phone-content {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ========================================================================
+   HERO SECTION (HeroSection.js)
+   ======================================================================== */
+
+.hero-root {
+  position: relative;
+  min-height: 100vh;
+  height: 100vh;
+  padding: 28px 56px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  background: linear-gradient(135deg, #d4b89e 0%, #c9a88d 100%);
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.hero-lottie-wrap {
+  position: absolute;
+  inset: -15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 0;
+  pointer-events: none;
+  filter: blur(100px);
+  opacity: 0.85;
+}
+
+.hero-lottie {
+  width: 140%;
+  max-width: 2000px;
+}
+
+.hero-main {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  display: flex;
+  flex-direction: column;   /* stack title + subtitle */
+  align-items: center;
+  justify-content: center;
+  padding: 40px 0;
+  text-align: center;
+}
+
+.hero-title {
+  margin: 0;
+  font-size: clamp(48px, 6.5vw, 82px);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  line-height: 1.1;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.hero-subtitle {
+  margin: 24px 0 0;
+  font-size: 18px;
+  font-weight: 400;
+  color: #ffffff;
+  letter-spacing: 0.18em;
+  text-align: center;
+}
+
+/* ========================================================================
+   FEATURES CAROUSEL (FeaturesCarousel.js)
+   - CONSISTENT POSITIONING FOR ALL FEATURES (GIF + PNG)
+   ======================================================================== */
+
+.features-carousel-section {
+  position: relative;
+  min-height: 100vh;
+  height: 100vh;
+  padding: 0 80px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: linear-gradient(162.71deg, #FFFFFF 3.9%, #F0C171 186.7%);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.features-carousel-section::before {
+  content: none;
+}
+
+/* Main layout: centered container, text left, phone right */
+.features-carousel-wrapper {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1220px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  align-items: center;
+  gap: 60px;
+}
+
+/* Left: text block */
+.features-text-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.features-text-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 560px;
+  animation: slideUpFadeIn 0.6s ease-out;
+}
+
+.features-title {
+  margin: 0;
+  font-size: 72px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  background: linear-gradient(97.86deg, #000000 -62.23%, #DDA23C 107.39%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.features-subtitle {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 400;
+  color: #1f1307;
+  line-height: 1.6;
+}
+
+/* Right: phone - CONSISTENT FOR ALL FEATURES */
+.features-phone-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  padding-right: 10px;
+}
+
+/* Same size and position for ALL features - GIF or PNG */
+.features-phone-wrapper .phone-mockup {
+  max-width: 620px;
+  transform: translateY(210px);
+}
+
+/* Phone content animation inside carousel */
+.phone-content-animated {
+  animation: fadeInContent 0.5s ease-out;
+}
+
+/* Animations */
+@keyframes slideUpFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInContent {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ========================================================================
+   SEBI SECTION (SEBISection.js)
+   ======================================================================== */
+
+.section-sebi {
+  position: relative;
+  min-height: 100vh;
+  height: 100vh;
+  padding: 28px 56px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: linear-gradient(162.71deg, #FFFFFF 3.9%, #F0C171 186.7%);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.section-sebi::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: transparent;
+  z-index: 1;
+}
+
+.section-sebi-content {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
+.sebi-badge {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sebi-seal {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #b8b8b8, #9a9a9a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 8px 16px rgba(0, 0, 0, 0.2),
+    inset 0 -3px 8px rgba(0, 0, 0, 0.15),
+    inset 0 3px 8px rgba(255, 255, 255, 0.3);
+  border: 8px solid #8a8a8a;
+  position: relative;
+}
+
+.sebi-seal::before {
+  content: "";
+  position: absolute;
+  inset: 15px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.sebi-seal-text {
+  font-size: 18px;
+  font-weight: 700;
+  color: #2a2a2a;
+  text-align: center;
+  letter-spacing: 1px;
+  line-height: 1.3;
+}
+
+.sebi-stamp-image {
+  width: 220px;
+  height: 220px;
+  object-fit: contain;
+  filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.18));
+}
+
+.section-sebi-title {
+  margin: 0;
+  font-size: clamp(56px, 7vw, 96px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  text-align: center;
+  background: linear-gradient(97.86deg, #000000 -62.23%, #DDA23C 107.39%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.section-sebi-subtitle {
+  margin: 0;
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: 400;
+  color: #1f1307;
+  text-align: center;
+}
+
+/* ========================================================================
+   GROW & PROTECT SECTION (GrowProtectSection.js)
+   ======================================================================== */
+
+.section-grow {
+  position: relative;
+  min-height: 100vh;
+  height: 100vh;
+  padding: 28px 56px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: linear-gradient(162.71deg, #FFFFFF 3.9%, #F0C171 186.7%);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.section-grow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: transparent;
+  z-index: 1;
+}
+
+.section-grow-content {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: center;
+  padding: 40px 0;
+}
+
+.section-grow-left {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.section-grow-title {
+  margin: 0;
+  font-size: clamp(48px, 6vw, 72px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  background: linear-gradient(97.86deg, #000000 -62.23%, #DDA23C 107.39%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.section-grow-subtitle {
+  margin: 0;
+  font-size: clamp(16px, 1.8vw, 22px);
+  font-weight: 400;
+  color: #1f1307;
+  line-height: 1.6;
+}
+
+.section-grow-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.vitty-logo-large {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.vitty-logo-image {
+  width: 350px;
+  height: 350px;
+  object-fit: contain;
+  filter: drop-shadow(0 15px 40px rgba(0, 0, 0, 0.15));
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* ========================================================================
+   RESPONSIVE OVERRIDES (GLOBAL)
+   ======================================================================== */
+
+@media (max-width: 1100px) {
+  .hero-title {
+    white-space: normal;
+    max-width: 90%;
+  }
+
+  .features-carousel-wrapper {
+    max-width: 1000px;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 48px;
+  }
+
+  .features-title {
+    font-size: 56px;
+  }
+
+  .section-grow-content {
+    gap: 40px;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero-root,
+  .features-carousel-section,
+  .section-sebi,
+  .section-grow {
+    padding: 80px 24px 32px;
+  }
+
+  .hero-links {
+    gap: 24px;
+    font-size: 14px;
+    order: 3;
+    flex-basis: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    justify-content: center;
+  }
+
+  .hero-title {
+    font-size: clamp(36px, 8vw, 64px);
+  }
+
+  .hero-dots {
+    right: 24px;
+  }
+
+  .features-carousel-wrapper {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    justify-items: flex-start;
+  }
+
+  .features-text-content {
+    max-width: 100%;
+  }
+
+  .features-phone-wrapper {
+    justify-content: center;
+    padding-right: 0;
+  }
+
+  .features-phone-wrapper .phone-mockup {
+    max-width: 280px;
+    transform: translateY(0);
+  }
+
+  .section-grow-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .sebi-seal,
+  .sebi-stamp-image {
+    width: 140px;
+    height: 140px;
+  }
+
+  .sebi-seal-text {
+    font-size: 16px;
+  }
+
+  .section-sebi-title {
+    font-size: clamp(48px, 10vw, 72px);
+  }
+
+  .section-grow-title {
+    font-size: clamp(40px, 9vw, 60px);
+  }
+
+  .vitty-logo-image {
+    width: 280px;
+    height: 280px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-root,
+  .features-carousel-section,
+  .section-sebi,
+  .section-grow {
+    padding: 72px 20px 24px;
+  }
+
+  .hero-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .hero-title {
+    font-size: clamp(28px, 9vw, 48px);
+  }
+
+  .hero-dots {
+    right: 16px;
+    gap: 8px;
+  }
+
+  .hero-dot {
+    width: 5px;
+    height: 5px;
+  }
+
+  .hero-dot-active {
+    width: 8px;
+    height: 8px;
+  }
+
+  .features-title {
+    font-size: clamp(36px, 12vw, 56px);
+  }
+
+  .features-subtitle {
+    font-size: clamp(14px, 4vw, 18px);
+  }
+
+  .phone-mockup {
+    max-width: 260px;
+  }
+
+  .sebi-seal,
+  .sebi-stamp-image {
+    width: 120px;
+    height: 120px;
+  }
+
+  .sebi-seal-text {
+    font-size: 14px;
+  }
+
+  .section-sebi-title {
+    font-size: clamp(36px, 12vw, 56px);
+  }
+
+  .section-sebi-subtitle {
+    font-size: clamp(16px, 4vw, 20px);
+  }
+
+  .section-grow-title {
+    font-size: clamp(32px, 10vw, 48px);
+  }
+
+  .section-grow-subtitle {
+    font-size: clamp(14px, 4vw, 18px);
+  }
+
+  .vitty-logo-image {
+    width: 240px;
+    height: 240px;
+  }
+}
