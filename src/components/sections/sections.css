@@ -73,7 +73,7 @@ select {
   min-height: 100vh;
 }
 
-//* ================= SHARED COMPONENTS (LOGO, NAV, CTA) ================= */
+/* ================= SHARED COMPONENTS (LOGO, NAV, CTA) ================= */
 
 .hero-logo-wrap {
   display: flex;
