@@ -1,17 +1,21 @@
 {
   "files": {
-    "main.css": "/static/css/main.15ec34da.css",
-    "main.js": "/static/js/main.84a25464.js",
-    "static/media/AskAnything.gif": "/static/media/AskAnything.254fcb41da8d91fd9190.gif",
-    "static/media/Stamp.png": "/static/media/Stamp.b6fb589a31d47604edc7.png",
-    "static/media/InvestSmart.gif": "/static/media/InvestSmart.d16fda1e510b8cdf1d58.gif",
-    "static/media/vitty_logo.png": "/static/media/vitty_logo.c10f9d5815c6fde0495d.png",
-    "index.html": "/index.html",
-    "main.15ec34da.css.map": "/static/css/main.15ec34da.css.map",
-    "main.84a25464.js.map": "/static/js/main.84a25464.js.map"
+    "main.css": "/vitty-landing/static/css/main.b8042f66.css",
+    "main.js": "/vitty-landing/static/js/main.0e1830dd.js",
+    "static/media/InsureSmart.png": "/vitty-landing/static/media/InsureSmart.dbfe0f2e7ffe7de83cfa.png",
+    "static/media/Vittyai.png": "/vitty-landing/static/media/Vittyai.aa88555ca7aa789f47b4.png",
+    "static/media/WealthSmart.png": "/vitty-landing/static/media/WealthSmart.f87a73f89365b6294599.png",
+    "static/media/AskAnything.gif": "/vitty-landing/static/media/AskAnything.254fcb41da8d91fd9190.gif",
+    "static/media/Stamp.png": "/vitty-landing/static/media/Stamp.b6fb589a31d47604edc7.png",
+    "static/media/PlanSmart.png": "/vitty-landing/static/media/PlanSmart.1bc3e16feb8116e53e24.png",
+    "static/media/InvestSmart.gif": "/vitty-landing/static/media/InvestSmart.d16fda1e510b8cdf1d58.gif",
+    "static/media/vitty_logo.png": "/vitty-landing/static/media/vitty_logo.c10f9d5815c6fde0495d.png",
+    "index.html": "/vitty-landing/index.html",
+    "main.b8042f66.css.map": "/vitty-landing/static/css/main.b8042f66.css.map",
+    "main.0e1830dd.js.map": "/vitty-landing/static/js/main.0e1830dd.js.map"
   },
   "entrypoints": [
-    "static/css/main.15ec34da.css",
-    "static/js/main.84a25464.js"
+    "static/css/main.b8042f66.css",
+    "static/js/main.0e1830dd.js"
   ]
 }
