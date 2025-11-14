@@ -1,6 +1,6 @@
 // sections/GrowProtectSection.js (Updated with Vitty Logo)
 import React from "react";
-import vittyLogo from "../../assets/vitty_logo.png";
+import vittyLogo from "../../assets/Vittyai.png";
 
 const GrowProtectSection = ({ activeSection, totalSections, scrollToSection }) => {
   return (

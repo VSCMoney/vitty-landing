@@ -29,12 +29,6 @@ const SEBISection = ({ activeSection, totalSections, scrollToSection }) => {
           />
         ))}
       </div>
-
-      <div className="hero-scroll" onClick={() => scrollToSection(7)}>
-        <div className="hero-scroll-circle">
-          <span className="hero-scroll-chevron">⌄</span>
-        </div>
-      </div>
     </section>
   );
 };

@@ -3,43 +3,38 @@
 import React from "react";
 import AskAnythingGif from "../../assets/AskAnything.gif";
 import InvestSmartGif from "../../assets/InvestSmart.gif";
+import InsureSmartImage from "../../assets/InsureSmart.png";
+import PlanSmartImage from "../../assets/PlanSmart.png";
+import WealthSmartImage from "../../assets/WealthSmart.png";
 
 const features = [
   {
     title: "Ask Anything",
     subtitle: "Investment • Insurance • Credit • Tax • Anything",
     image: AskAnythingGif,
-    bgClass: "section-ask",
   },
   {
     title: "Invest Smart",
     subtitle: "Create advanced screens & notifications, all in natural language",
     image: InvestSmartGif,
-    bgClass: "section-invest",
   },
   {
     title: "Insure Smart",
     subtitle:
       "Easily understand fine print, Compare 100s of policies, No conflict of interest",
-    image:
-      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&h=800&fit=crop",
-    bgClass: "section-insure",
+    image: InsureSmartImage,
   },
   {
     title: "Plan Smart",
     subtitle:
       "Set financial goals that truly matter and track your progress with clarity and confidence.",
-    image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=800&fit=crop",
-    bgClass: "section-plan",
+    image: PlanSmartImage,
   },
   {
     title: "Wealth Smart",
     subtitle:
       "One place to see your assets, liabilities, and overall financial health.",
-    image:
-      "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=400&h=800&fit=crop",
-    bgClass: "section-wealth",
+    image: WealthSmartImage,
   },
 ];
 
@@ -52,7 +47,7 @@ const FeaturesCarousel = ({
   const currentFeature = features[carouselIndex];
 
   return (
-    <section className={`features-carousel-section ${currentFeature.bgClass}`}>
+    <section className="features-carousel-section">
       <div className="features-carousel-wrapper">
         <div className="features-text-wrapper">
           <div className="features-text-content" key={`text-${carouselIndex}`}>
@@ -61,7 +56,7 @@ const FeaturesCarousel = ({
           </div>
         </div>
 
-        <div className="features-phone-wrapper">
+        <div className="features-phone-wrapper" key={`phone-${carouselIndex}`}>
           <div className="phone-mockup">
             <div className="phone-frame">
               <div className="phone-notch"></div>
@@ -93,9 +88,7 @@ const FeaturesCarousel = ({
       <div
         className="hero-scroll"
         onClick={() =>
-          scrollToSection(
-            carouselIndex < 4 ? activeSection + 1 : 6
-          )
+          scrollToSection(carouselIndex < 4 ? activeSection + 1 : 6)
         }
       >
         <div className="hero-scroll-circle">

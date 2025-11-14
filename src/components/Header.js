@@ -11,15 +11,18 @@ const Header = ({ showNavLinks = true }) => {
       </div>
 
       {/* Center: Nav */}
-      {showNavLinks && (
-        <nav className="hero-links">
-          <a href="#api">API</a>
-          <a href="#about">About</a>
-          <a href="#legal">Legal</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#research">Research</a>
-        </nav>
-      )}
+      <nav
+        className={
+          "hero-links " +
+          (showNavLinks ? "hero-links-visible" : "hero-links-hidden")
+        }
+      >
+        <a href="#api">API</a>
+        <a href="#about">About</a>
+        <a href="#legal">Legal</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#research">Research</a>
+      </nav>
 
       {/* Right: CTA */}
       <button className="hero-cta">Request access</button>

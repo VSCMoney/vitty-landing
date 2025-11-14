@@ -2,6 +2,7 @@
    GLOBAL / SHARED: APPLIES TO ENTIRE LANDING PAGE
    ======================================================================== */
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap');
 
 /* ================= COMMON HEADER (Header.js) ================= */
 
@@ -54,13 +55,13 @@ html {
 
 body {
   margin: 0;
-  font-family: "Sora", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   background-color: #f6eee2;
   color: #1f1307;
   overflow-x: hidden;
 }
 
-/* ensure all basic elements inherit Sora cleanly */
+/* ensure all basic elements inherit DM Sans cleanly */
 a,
 button,
 input,
@@ -91,14 +92,31 @@ select {
 .hero-links {
   display: flex;
   align-items: center;
-  gap: 190px;
+  gap: 100px;
   margin-left: 590px;
-  margin-right: 0px; /* ✅ Even more space */
+  margin-right: -50px;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
+
+/* visible state (optional, but clear) */
+.hero-links-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* hidden = slide up + fade out */
+.hero-links-hidden {
+  opacity: 0;
+  transform: translateY(-12px);
+  pointer-events: none; /* click block when hidden */
+}
+
 
 .hero-links a {
   text-decoration: none;
-  color: #8d5d32;
+  color: #734012;
   font-size: 16px;
   font-weight: 500;
   transition: color 0.2s ease;
@@ -106,15 +124,15 @@ select {
 }
 
 .hero-links a:hover {
-  color: #6b4524;
+  color: #734012;
 }
 
 .hero-cta {
   padding: 13px 28px;
-  border-radius: 6px;
+  border-radius: 2px;
   border: none;
   outline: none;
-  background: #c9973d;
+  background: #C8983B;
   color: #ffffff;
   font-size: 15px;
   font-weight: 600;
@@ -148,7 +166,7 @@ select {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #8a5a2e;
+  background: #734012;
   opacity: 0.6;
   cursor: pointer;
   transition: all 0.25s ease;
@@ -205,6 +223,7 @@ select {
   justify-content: center;
   background: rgba(255, 255, 255, 0.06);
   transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    animation: scrollChevron 1.2s ease-in-out infinite;
 }
 
 .hero-scroll-circle:hover {
@@ -215,9 +234,11 @@ select {
 
 /* Make the chevron sit dead-center */
 .hero-scroll-chevron {
-  display: block;     /* avoid inline baseline offset */
+  display: inline-block;   /* inline baseline issues hatao */
   font-size: 18px;
-  line-height: 1;     /* exact centering inside circle */
+  line-height: 1;
+  transform: translateY(-3.5px);  /* 👈 arrow ko thoda niche push */
+
 }
 
 
@@ -225,49 +246,45 @@ select {
 
 .phone-mockup {
   position: relative;
-  width: 100%;
-  max-width: 380px;
-  aspect-ratio: 9 / 19.5;
+  width: -600%;
+  max-width: 420px;      /* thoda bada phone */
+  aspect-ratio: auto;    /* image ko decide karne do */
 }
 
+/* frame ko neutral kar do – no extra black rounded frame */
 .phone-frame {
   position: relative;
-  width: 100%;
-  height: 100%;
-  background: #000000;
-  border-radius: 52px;
-  padding: 12px;
-  box-shadow:
-    0 25px 60px rgba(0, 0, 0, 0.3),
-    0 0 0 1px rgba(255, 255, 255, 0.1);
+  width: -100%;
+  height: auto;
+  background: transparent;
+  border-radius: 0;
+  padding: -100;
+  box-shadow: none;
 }
 
+/* notch ki zaroorat nahi, image me already hai */
 .phone-notch {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 150px;
-  height: 30px;
-  background: #000000;
-  border-radius: 0 0 20px 20px;
-  z-index: 10;
+  display: none;
 }
 
+/* screen wrapper bhi transparent */
 .phone-screen {
   position: relative;
-  width: 100%;
-  height: 100%;
-  background: #f5f5f7;
-  border-radius: 42px;
-  overflow: hidden;
+  width: -100%;
+  height: auto;
+  background: transparent;
+  border-radius: 0;
+  overflow: visible;
 }
 
+/* image = poora phone (frame + UI) */
 .phone-content {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
+  transition: opacity 0.3s ease-out;
 }
+
 
 /* ========================================================================
    HERO SECTION (HeroSection.js)
@@ -275,34 +292,42 @@ select {
 
 .hero-root {
   position: relative;
-  min-height: 100vh;
+  min-height: 0vh;
   height: 100vh;
-  padding: 28px 56px 40px;
+  padding: 128px 156px 140px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
-  background: linear-gradient(135deg, #d4b89e 0%, #c9a88d 100%);
+  background: linear-gradient(135deg, #FAF9F7 0%, #FFE8D9 100%);
   scroll-snap-align: start;
   scroll-snap-stop: always;
 }
 
 .hero-lottie-wrap {
   position: absolute;
-  inset: -15%;
+  top: -52%;
+  left: 50%;
+  transform: translate(1%, 1%);  /* center hero ke beech */
+  width: -790%;                        /* Figma jaisa bada, but thoda control */
+  max-width: 1700px;
+  height: auto;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 0;
+
+  z-index: 0;          /* text/heading upar rahe */
   pointer-events: none;
-  filter: blur(100px);
-  opacity: 0.85;
+  filter: blur(90px);  /* smooth soft blobs */
+  opacity: 0.18;       /* subtle but visible, figma feel */
 }
 
 .hero-lottie {
-  width: 140%;
-  max-width: 2000px;
+  width: 00%;   /* wrapper ke andar full */
+  height: auto;
 }
+
 
 .hero-main {
   position: relative;
@@ -318,6 +343,7 @@ select {
 
 .hero-title {
   margin: 0;
+  font-family: "Sora", sans-serif;
   font-size: clamp(48px, 6.5vw, 82px);
   font-weight: 400;
   letter-spacing: -0.01em;
@@ -392,6 +418,7 @@ select {
 
 .features-title {
   margin: 0;
+  font-family: "Sora", sans-serif;
   font-size: 72px;
   font-weight: 600;
   letter-spacing: -0.02em;
@@ -400,6 +427,7 @@ select {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  transition: opacity 0.3s ease-out;
 }
 
 .features-subtitle {
@@ -408,6 +436,7 @@ select {
   font-weight: 400;
   color: #1f1307;
   line-height: 1.6;
+  transition: opacity 0.3s ease-out;
 }
 
 /* Right: phone - CONSISTENT FOR ALL FEATURES */
@@ -453,6 +482,18 @@ select {
     transform: scale(1);
   }
 }
+
+
+@keyframes scrollChevron {
+  0%,
+  100% {
+    transform: translateY(1.5px);  /* normal position */
+  }
+  50% {
+    transform: translateY(5px);    /* thoda neeche – “scroll down” hint */
+  }
+}
+
 
 /* ========================================================================
    SEBI SECTION (SEBISection.js)
@@ -542,6 +583,7 @@ select {
 
 .section-sebi-title {
   margin: 0;
+  font-family: "Sora", sans-serif;
   font-size: clamp(56px, 7vw, 96px);
   font-weight: 600;
   letter-spacing: -0.02em;
@@ -608,7 +650,8 @@ select {
 
 .section-grow-title {
   margin: 0;
-  font-size: clamp(48px, 6vw, 72px);
+  font-family: "Sora", sans-serif;
+  font-size: clamp(50px, 0vw, 50px);
   font-weight: 600;
   letter-spacing: -0.02em;
   line-height: 1.2;
@@ -620,11 +663,13 @@ select {
 
 .section-grow-subtitle {
   margin: 0;
-  font-size: clamp(16px, 1.8vw, 22px);
+  font-size: clamp(18px, 2vw, 24px);
   font-weight: 400;
   color: #1f1307;
   line-height: 1.6;
+  text-align: left;
 }
+
 
 .section-grow-right {
   display: flex;
